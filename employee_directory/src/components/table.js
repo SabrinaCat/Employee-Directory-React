@@ -1,4 +1,4 @@
-import react, {Component} from 'react';
+import React, {Component} from 'react';
 import employee from './employees.json';
 
 class Table extends Component {
@@ -19,14 +19,31 @@ class Table extends Component {
                 "email": "StopCallingMeBarb@gmail.com"  
             }]
         };
-            //employees: {employee};
+            //employees: {employee}
         
     }
-
+renderTableData(){
+    return this.state.employees.map((employee, index) => {
+        const {id, name, role, email} = employee //destructuring employee props
+    return (
+        <tr key= {id}>
+            <td>{id}</td>
+            <td>{name}</td>
+            <td>{role}</td>
+            <td>{email}</td>
+        </tr>
+    )
+    })
+}
 render() {
     return (
         <div>
             <h1>Current Employees</h1>
+            <table id="employees">
+                <tbody>
+                    {this.renderTableData()}
+                </tbody>
+            </table>
         </div>
     )
 }
